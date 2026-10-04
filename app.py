@@ -1,5 +1,6 @@
 """AI-Powered Resume Screening & Job Recommendation System - Streamlit app."""
 import html
+from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -19,29 +20,32 @@ st.set_page_config(page_title="Resume Screening & Job Recommender", page_icon="�
 
 PAGES = ["Dashboard", "Resume Analyzer", "Job Matcher", "Job Recommendations", "Skill Gap", "Model Evaluation", "About Project"]
 
-st.markdown(f"""
-<style>
-.block-container {{padding-top: 2rem; max-width: 1250px;}}
-h1, h2, h3 {{color: {C['dark']}; letter-spacing: -0.01em;}}
-.kpi {{background:#fff; border:1px solid #E5E7EB; border-left:4px solid {C['primary']}; border-radius:10px; padding:14px 16px;}}
-.kpi .v {{font-size:1.75rem; font-weight:700; color:{C['dark']}; line-height:1.2;}}
-.kpi .l {{font-size:.85rem; color:#6B7280;}} .kpi .s {{font-size:.75rem; color:#9CA3AF;}}
-.chip {{display:inline-block; padding:2px 10px; margin:2px 4px 2px 0; border-radius:999px; font-size:.8rem; border:1px solid transparent;}}
-.chip.ok {{background:#DCFCE7; color:#166534; border-color:#86EFAC;}}
-.chip.miss {{background:#FEE2E2; color:#991B1B; border-color:#FCA5A5;}}
-.chip.pref {{background:#FEF3C7; color:#92400E; border-color:#FCD34D;}}
-.chip.info {{background:#EEF2FF; color:#3730A3; border-color:#C7D2FE;}}
-.tag {{font-size:.7rem; padding:1px 7px; border-radius:6px; background:#F3F4F6; color:#374151; margin-left:6px;}}
-.tag.inf {{background:#FEF3C7; color:#92400E;}}
-.scorecard {{background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:12px 14px; text-align:center;}}
-.scorecard .v {{font-size:1.6rem; font-weight:700;}} .scorecard .l {{font-size:.8rem; color:#6B7280;}}
-section[data-testid="stSidebar"] {{border-right:1px solid #E5E7EB;}}
-</style>""", unsafe_allow_html=True)
+_css_path = Path(__file__).parent / "assets" / "style.css"
+_css = _css_path.read_text(encoding="utf-8") if _css_path.exists() else ""
+st.markdown(f"<style>{_css}</style>", unsafe_allow_html=True)
+
+NAV_ICONS = {"Dashboard": "📊", "Resume Analyzer": "📄", "Job Matcher": "🎯", "Job Recommendations": "💼",
+             "Skill Gap": "🧩", "Model Evaluation": "🧪", "About Project": "ℹ️"}
+PAGE_SUBTITLES = {
+    "Dashboard": "Overview of the job market, your analyses and model performance",
+    "Resume Analyzer": "Upload a resume and extract skills, education and experience",
+    "Job Matcher": "Compare your resume against a specific job posting",
+    "Job Recommendations": "Best-fitting jobs ranked by compatibility score",
+    "Skill Gap": "See which skills you have, which you lack, and what to learn next",
+    "Model Evaluation": "Performance of the role classification model",
+    "About Project": "Problem, methodology and limitations",
+}
 
 
 # ------------------------------------------------------------------ helpers
 def kpi(label, value, sub=""):
     st.markdown(f'<div class="kpi"><div class="l">{label}</div><div class="v">{value}</div><div class="s">{sub}</div></div>', unsafe_allow_html=True)
+
+
+def page_header(title):
+    st.markdown(f'<div class="page-head"><div class="ico">{NAV_ICONS[title]}</div>'
+                f'<div><div class="t">{title}</div><div class="s">{PAGE_SUBTITLES[title]}</div></div></div>',
+                unsafe_allow_html=True)
 
 
 def chips(items, kind="info", empty="None"):
@@ -68,9 +72,12 @@ def scorecard(label, v, big=False):
 
 
 def style_fig(fig, h=330):
-    fig.update_layout(height=h, margin=dict(l=10, r=10, t=40, b=10), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                      font=dict(color=C["dark"]), title_font_size=15, legend_title_text="")
-    fig.update_xaxes(gridcolor="#E5E7EB"); fig.update_yaxes(gridcolor="#E5E7EB")
+    fig.update_layout(height=h, margin=dict(l=10, r=10, t=48, b=10), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+                      font=dict(family="Inter, Segoe UI, sans-serif", color="#334155", size=12),
+                      title=dict(font=dict(size=14, color=C["dark"]), x=0.01), legend_title_text="",
+                      hoverlabel=dict(bgcolor="#0F172A", font_color="#F8FAFC", bordercolor="#0F172A"))
+    fig.update_xaxes(gridcolor="#EEF2F7", zeroline=False, linecolor="#E2E8F0")
+    fig.update_yaxes(gridcolor="#EEF2F7", zeroline=False, linecolor="#E2E8F0")
     return fig
 
 
@@ -167,21 +174,33 @@ def need_resume():
 
 
 # ------------------------------------------------------------------ sidebar
-st.sidebar.markdown("## 📄 Resume Screening")
-st.sidebar.caption("AI/ML resume–job matching · Streamlit")
-page = st.sidebar.radio("Navigate", PAGES, key="nav", label_visibility="collapsed")
-st.sidebar.divider()
-res_state = st.session_state.get("resume")
-st.sidebar.caption("Current resume: " + (f"**{st.session_state.get('resume_name')}**" if res_state else "none loaded"))
-if st.sidebar.button("Reset session"):
-    for k in ["resume", "resume_name", "roles", "recs", "job", "match"]:
-        st.session_state.pop(k, None)
-    st.rerun()
+with st.sidebar:
+    st.markdown('<div class="brand"><div class="logo">📄</div><div><div class="name">Resume Screening</div>'
+                '<div class="tagline">AI Job Matching &amp; Recommender</div></div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="nav-label">Menu</div>', unsafe_allow_html=True)
+    page = st.radio("Navigate", PAGES, key="nav", label_visibility="collapsed",
+                    format_func=lambda p: f"{NAV_ICONS[p]}   {p}")
+    st.divider()
+    res_state = st.session_state.get("resume")
+    st.markdown('<div class="nav-label">Session</div>', unsafe_allow_html=True)
+    if res_state:
+        st.markdown(f'<div class="side-card"><div class="k">Current resume</div>'
+                    f'<div class="val"><span class="dot on"></span>{html.escape(str(st.session_state.get("resume_name")))}</div></div>',
+                    unsafe_allow_html=True)
+    else:
+        st.markdown('<div class="side-card"><div class="k">Current resume</div>'
+                    '<div class="val"><span class="dot off"></span>None loaded</div></div>', unsafe_allow_html=True)
+    st.write("")
+    if st.button("Reset session", use_container_width=True):
+        for k in ["resume", "resume_name", "roles", "recs", "job", "match", "gap"]:
+            st.session_state.pop(k, None)
+        st.rerun()
+    st.markdown('<div class="side-foot">AI Resume Screening System</div>', unsafe_allow_html=True)
 
 
 # ================================================================= PAGES
 def page_dashboard():
-    st.title("Dashboard")
+    page_header("Dashboard")
     jobs, index = need_jobs()
     valid = jobs[jobs.is_valid]
     hist = history.load_history()
@@ -258,8 +277,7 @@ def page_dashboard():
 
 
 def page_resume():
-    st.title("Resume Analyzer")
-    st.caption("Upload a PDF, DOCX or TXT resume. Fields that cannot be found are reported as 'Not found' - nothing is guessed.")
+    page_header("Resume Analyzer")
     up = st.file_uploader("Upload resume", type=["pdf", "docx", "txt"])
     samples = sorted(p for p in (SAMPLES_DIR / "resumes").glob("*.*") if p.suffix.lower() in (".pdf", ".docx", ".txt")) if (SAMPLES_DIR / "resumes").exists() else []
     cols = st.columns([2, 1])
@@ -336,7 +354,7 @@ def page_resume():
 
 
 def page_matcher():
-    st.title("Job Matcher")
+    page_header("Job Matcher")
     r = need_resume()
     jobs, index = need_jobs()
     mode = st.radio("Job source", ["Select from job dataset", "Paste a job description"], horizontal=True)
@@ -378,7 +396,7 @@ def page_matcher():
 
 
 def page_recs():
-    st.title("Job Recommendations")
+    page_header("Job Recommendations")
     r = need_resume()
     jobs, index = need_jobs()
     n = st.slider("Number of recommendations", 5, 25, 10)
@@ -430,7 +448,7 @@ def page_recs():
 
 
 def page_gap():
-    st.title("Skill Gap Analysis")
+    page_header("Skill Gap")
     r = need_resume()
     jobs, index = need_jobs()
     job = st.session_state.get("job")
@@ -471,7 +489,7 @@ def page_gap():
 
 
 def page_eval():
-    st.title("Model Evaluation")
+    page_header("Model Evaluation")
     bundle = get_model()
     if bundle is None:
         st.warning("The role classifier has not been trained yet.")
@@ -528,7 +546,7 @@ def page_eval():
 
 
 def page_about():
-    st.title("About Project")
+    page_header("About Project")
     jobs = get_jobs() if discover_datasets()["jobs"] else None
     st.markdown(f"""
 ### Problem statement
