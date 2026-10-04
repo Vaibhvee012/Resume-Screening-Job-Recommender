@@ -88,21 +88,7 @@ Preferred skills are *inferred* from wording like "preferred / nice to have / pl
 Selected model: accuracy **0.872**, macro precision **0.761**, macro recall **0.715**, macro F1 **0.735**. Per-class results, confusion matrix and the full report are in the app and the notebook.
 Training examples per role: Software Developer 3,115 · Web Developer 907 · Data Analyst 295 · Cyber Security Analyst 82 · **Data Scientist 49 · Machine Learning Engineer 30** - the last two are too small for reliable metrics (test support 10 and 6). Headline accuracy is driven by the large Software Developer class; macro-F1 is the fairer number. Metrics were not inflated or tuned on the test set.
 
-## 13. Screenshots
-**Dashboard**
-
-![Dashboard](screenshots/06_dashboard_with_analysis.png)
-
-| | |
-|---|---|
-| **Resume Analyzer** | **Job Matcher** |
-| ![Resume Analyzer](screenshots/02_resume_analyzer.png) | ![Job Matcher](screenshots/03_job_matcher.png) |
-| **Job Recommendations** | **Skill Gap** |
-| ![Job Recommendations](screenshots/04_job_recommendations.png) | ![Skill Gap](screenshots/05_skill_gap.png) |
-| **Model Evaluation** | **About Project** |
-| ![Model Evaluation](screenshots/07_model_evaluation.png) | ![About Project](screenshots/08_about.png) |
-
-## 14. Project structure
+## 13. Project structure
 ```
 app.py  requirements.txt  README.md
 assets/style.css            custom UI styling (sidebar, cards, chips, buttons)
@@ -113,10 +99,10 @@ models/                     role_classifier.pkl, tfidf_vectorizer.pkl, label_enc
 src/                        config, data_loader, text_processor, skill_extractor, education, resume_parser,
                             job_analyzer, matcher, classifier, recommender, skill_gap, history
 notebooks/                  AI_Resume_Screening_Project.ipynb (EDA → preprocessing → training → evaluation → matching experiment)
-samples/ tests/ docs/ screenshots/
+samples/ tests/ docs/
 ```
 
-## 15. Limitations
+## 14. Limitations
 - Skills come from a ~145-skill dictionary: unlisted skills are missed, and mentions are not proof of proficiency. Soft/business terms can add noise to non-IT postings.
 - No OCR - scanned/image-only PDFs are rejected with a clear message.
 - Classifier trained on rule-derived labels from job postings, applied to resumes (domain shift); Data Scientist / ML Engineer are tiny classes. Replace with the Kaggle resume data for a stronger result.
@@ -124,10 +110,10 @@ samples/ tests/ docs/ screenshots/
 - Experience is estimated from date ranges relative to today's date, so old resumes with "Present" will be over-counted.
 - The score must not be the sole basis of hiring decisions. Learning a skill does not guarantee a job.
 
-## 16. Future enhancements
+## 15. Future enhancements
 Add the Kaggle resume dataset and compare; contextual skill extraction (spaCy NER / embeddings); semantic similarity (sentence embeddings); OCR for scans; user-adjustable weights in the UI; export reports as PDF; dark-mode toggle for the main area.
 
-## 17. Team contribution
+## 16. Team contribution
 | Member | Contribution |
 |---|---|
 | _Name 1_ | _e.g. resume parsing & NLP_ |
