@@ -112,10 +112,3 @@ samples/ tests/ docs/
 
 ## 15. Future enhancements
 Add the Kaggle resume dataset and compare; contextual skill extraction (spaCy NER / embeddings); semantic similarity (sentence embeddings); OCR for scans; user-adjustable weights in the UI; export reports as PDF; dark-mode toggle for the main area.
-
-## 16. Team contribution
-| Member | Contribution |
-|---|---|
-| _Name 1_ | _e.g. resume parsing & NLP_ |
-| _Name 2_ | _e.g. ML model & evaluation_ |
-| _Name 3_ | _e.g. Streamlit UI & documentation_ |
