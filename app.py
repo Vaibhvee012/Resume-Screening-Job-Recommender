@@ -16,7 +16,7 @@ from src.recommender import JobIndex, recommend_jobs, recommended_roles
 from src.resume_parser import ResumeParseError, extract_text, parse_resume
 from src.skill_gap import analyze_gap
 
-st.set_page_config(page_title="Resume Screening & Job Recommender", page_icon="📄", layout="wide")
+st.set_page_config(page_title="Resume Screening & Job Recommender", page_icon="📄", layout="wide", initial_sidebar_state="expanded")
 
 PAGES = ["Dashboard", "Resume Analyzer", "Job Matcher", "Job Recommendations", "Skill Gap", "Model Evaluation", "About Project"]
 

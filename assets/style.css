@@ -19,8 +19,12 @@ html, body, [class*="css"], .stApp {
 .stApp { background: var(--bg); }
 
 /* ---------- hide default Streamlit chrome ---------- */
-#MainMenu, footer, [data-testid="stToolbar"], [data-testid="stDecoration"] { visibility: hidden; height: 0; }
+#MainMenu, footer { visibility: hidden; }
+[data-testid="stDecoration"], [data-testid="stAppDeployButton"], .stDeployButton { display: none; }
 header[data-testid="stHeader"] { background: transparent; }
+/* always keep the sidebar open/close button reachable */
+[data-testid="stSidebarCollapsedControl"], [data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapseButton"] { visibility: visible !important; display: flex !important; }
+[data-testid="stSidebarCollapsedControl"] button, [data-testid="stExpandSidebarButton"] { color: #4F46E5 !important; }
 
 /* ---------- main area ---------- */
 .block-container { padding-top: 1.6rem; padding-bottom: 3rem; max-width: 1280px; }
@@ -82,7 +86,7 @@ div[data-baseweb="select"] > div, .stTextInput input, .stTextArea textarea { bor
    ===================================================================== */
 section[data-testid="stSidebar"] {
   background: linear-gradient(180deg, var(--side-1) 0%, var(--side-2) 100%);
-  border-right: none; min-width: 270px;
+  border-right: none;
 }
 section[data-testid="stSidebar"] > div { padding-top: .6rem; }
 section[data-testid="stSidebar"] * { color: #CBD5E1; }
