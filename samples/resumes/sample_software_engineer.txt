@@ -1,0 +1,39 @@
+John Doe
+john.doe@email.com | +91-9876543210 | linkedin.com/in/johndoe
+
+EDUCATION
+B.Tech in Computer Science - JNTU Hyderabad (2019-2023)  CGPA: 8.5/10
+
+PROFESSIONAL EXPERIENCE
+Software Engineer | TechCorp Solutions, Hyderabad (Jun 2023 - Present)  [1.5 years]
+- Developed and maintained RESTful APIs using Python (Flask, FastAPI)
+- Built microservices architecture deployed on Docker and Kubernetes
+- Worked with PostgreSQL, MongoDB, and Redis for data management
+- Implemented CI/CD pipelines using GitHub Actions and Jenkins
+- Collaborated in Agile sprints using JIRA and Confluence
+
+Intern Software Developer | StartupXYZ, Bangalore (Jan 2023 - May 2023)  [5 months]
+- Developed React.js frontend components integrated with Node.js backend
+- Wrote SQL queries for data analysis and reporting
+
+TECHNICAL SKILLS
+Programming: Python, Java, JavaScript, TypeScript, C++
+Web: React, Node.js, HTML, CSS, REST API
+Databases: PostgreSQL, MongoDB, MySQL, Redis
+DevOps: Docker, Kubernetes, Git, CI/CD, Linux
+ML/Data: Scikit-learn, Pandas, NumPy, Machine Learning basics
+Tools: JIRA, Postman, VS Code, IntelliJ
+
+PROJECTS
+AI Resume Screener (Final Year Project)
+- Built NLP pipeline using TF-IDF and cosine similarity
+- Trained Logistic Regression classifier achieving 89% accuracy
+- Deployed on Streamlit for demonstration
+
+E-commerce Platform
+- Full-stack application: React frontend + Node.js + MongoDB backend
+- Implemented JWT authentication and REST APIs
+
+CERTIFICATIONS
+- AWS Certified Cloud Practitioner (2023)
+- Python for Data Science - Coursera

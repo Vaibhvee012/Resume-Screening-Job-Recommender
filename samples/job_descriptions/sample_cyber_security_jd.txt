@@ -1,0 +1,11 @@
+Job Title: Cyber Security Analyst
+Company: SafeLayer Pvt Ltd
+Location: Pune
+Experience: 2-5 years
+
+Responsibilities include monitoring SIEM alerts, performing vulnerability assessment and penetration testing, managing firewalls and responding to incidents.
+
+Required: Cyber Security, SIEM (Splunk/QRadar), Nmap, Wireshark, Linux, Networking, ISO 27001 knowledge.
+Preferred: CEH or OSCP certification, Python scripting and Metasploit experience is an added advantage.
+
+Education: B.Tech / B.Sc in IT or Computer Science.

@@ -1,0 +1,16 @@
+Job Title: Full Stack Web Developer
+Company: BrightApps Technologies
+Location: Indore
+Experience: 2-4 years
+
+We are hiring a web developer to build and maintain customer-facing web applications.
+
+Requirements:
+- Strong skills in HTML, CSS, JavaScript and React
+- Backend experience with Node.js and REST APIs
+- Experience with MongoDB or MySQL
+- Familiarity with Git and Agile teams
+
+Nice to have: TypeScript, Docker and AWS exposure is a plus.
+
+Education: B.Tech / BCA / B.Sc in Computer Science or related field.

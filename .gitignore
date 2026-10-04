@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.env
+venv/
+env/
+.venv/
+.pytest_cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Original datasets are large (52 MB) - download from Kaggle, see data/*/README.md
+dataset/*.csv
+data/resumes/*.csv
+data/jobs/*.csv
+
+# Generated caches and history (re-created automatically on first run)
+data/processed/
+
+# Jupyter / OS / IDE
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

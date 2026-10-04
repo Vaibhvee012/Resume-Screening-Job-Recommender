@@ -1,0 +1,36 @@
+Priya Sharma
+priya.sharma@email.com | +91-8765432109
+
+EDUCATION
+M.Sc Data Science - IIT Bombay (2021-2023)  CGPA: 8.9/10
+B.Sc Statistics - Delhi University (2018-2021)  78%
+
+PROFESSIONAL EXPERIENCE
+Data Scientist | Analytics Hub, Mumbai (Jul 2023 - Present)  [1.2 years]
+- Built machine learning models for customer churn prediction (XGBoost, Random Forest)
+- Developed NLP pipeline for sentiment analysis using BERT and Hugging Face transformers
+- Performed EDA and feature engineering on large datasets using Pandas and NumPy
+- Created Tableau dashboards and automated reports for business stakeholders
+- Deployed models using FastAPI and Docker on AWS SageMaker
+
+Data Analyst Intern | FinTech Solutions (Jan 2023 - Jun 2023)
+- Analyzed customer transaction data using SQL and Python
+- Built Power BI dashboards for sales performance tracking
+- Applied A/B testing for product feature experiments
+
+TECHNICAL SKILLS
+ML/AI: Machine Learning, Deep Learning, NLP, Computer Vision, TensorFlow, PyTorch, Scikit-learn
+Data: Pandas, NumPy, Matplotlib, Seaborn, Plotly, Statistics, Feature Engineering
+Languages: Python, R, SQL
+Cloud: AWS (SageMaker, S3, EC2), Google Cloud BigQuery
+BI Tools: Tableau, Power BI, Excel
+Others: Git, Docker, Jupyter Notebook, Hugging Face, BERT
+
+PROJECTS
+Customer Churn Prediction
+- XGBoost model with 91% AUC on telecom dataset
+- SHAP values for model interpretability
+
+Sentiment Analysis Engine
+- Fine-tuned BERT for product review classification
+- Deployed as REST API serving 10K requests/day

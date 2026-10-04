@@ -1,0 +1,31 @@
+Job Title: Senior Data Scientist
+Company: AI Innovations Pvt Ltd
+Location: Bangalore / Hybrid
+Experience: 3-6 years
+
+Job Description:
+We are looking for a talented Data Scientist to join our AI team.
+You will work on building and deploying machine learning models at scale.
+
+Responsibilities:
+- Design and implement ML models (classification, regression, clustering)
+- Work with large datasets using Python, Pandas, and SQL
+- Build NLP pipelines for text analytics use cases
+- Deploy models to production using MLOps best practices
+- Collaborate with engineering teams on model integration
+
+Required Skills:
+- Python (Pandas, NumPy, Scikit-learn)
+- Machine Learning and Deep Learning
+- TensorFlow or PyTorch
+- NLP and Natural Language Processing
+- SQL and database management
+- Git version control
+
+Preferred Skills:
+- Experience with AWS SageMaker or Azure ML
+- Knowledge of Docker and Kubernetes
+- Familiarity with BERT and transformer models
+
+Education: M.Tech/M.Sc in Data Science, Computer Science, Statistics, or related field
+Salary: 15-25 LPA
